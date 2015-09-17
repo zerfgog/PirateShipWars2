@@ -1,0 +1,11 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\redcoat\british_hats"
+	"$bumpmap" "models\redcoat\british_hats_n"
+	"$surfaceprop" "Metal"
+	"$alphatest" 1
+	"$nocull" 1
+	"$phong" 1
+	"$phongexponent" 33
+	"$phongboost" 2
+}

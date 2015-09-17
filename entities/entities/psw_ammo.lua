@@ -1,48 +1,46 @@
 AddCSLuaFile()
 
-ENT.Type 			= "anim"
-ENT.Base 			= "base_anim"
-ENT.PrintName		= "Pistol Ammo"
+ENT.Type		= "anim"
+ENT.Base		= "base_anim"
+ENT.PrintName	= "Pistol Ammo"
 
-ENT.Spawnable			= true
-ENT.AdminSpawnable		= true
+ENT.Spawnable	= true
 
-if ( SERVER ) then
+ENT.uses = 2
 
+ENT.Model = "models/items/boxsrounds.mdl"
+
+if SERVER then
 	function ENT:Initialize()
-		self.Entity:SetModel("models/items/boxsrounds.mdl")
-	    self.Entity:SetSkin(0)
-		self.Entity:PhysicsInit(SOLID_VPHYSICS)
-		self.Entity:SetMoveType(MOVETYPE_VPHYSICS)
-		self.Entity:SetSolid(SOLID_VPHYSICS)
-	    self.Entity:SetUseType(SIMPLE_USE)
+		self:SetModel(self.Model)
+		self:SetSkin(0)
+		self:PhysicsInit(SOLID_VPHYSICS)
+		self:SetMoveType(MOVETYPE_VPHYSICS)
+		self:SetSolid(SOLID_VPHYSICS)
+		self:SetUseType(SIMPLE_USE)
 		local phys = self.Entity:GetPhysicsObject()
-		if phys and phys:IsValid() then phys:Wake() end
-		self.uses = 2 
+		if phys and IsValid(phys) then phys:Wake() end
 	end
 
 	function ENT:SpawnFunction(ply, tr)
-
 		if not tr.Hit then return end
 
-		local SpawnPos = tr.HitPos + tr.HitNormal*16 
+		local spawnpos = tr.HitPos + tr.HitNormal * 16 
 		local ent = ents.Create("ammobox_Pistol")
-		ent:SetPos(SpawnPos)
+		ent:SetPos(spawnpos)
 		ent:Spawn()
 		ent:Activate()
 		return ent
-
 	end
 
 	function ENT:Use(activator, caller )
-		
-		if ( activator:IsPlayer() ) then 
-			activator:GiveAmmo(6,"pistol")
-			self.uses = (self.uses - 1)
+		if activator:IsPlayer() then 
+			activator:GiveAmmo(6, "pistol")
+			self.uses = self.uses - 1
 		end
-	  
-		if (self.uses< 1) then
-			self.Entity:Remove()
+
+		if self.uses < 1 then
+			self:Remove()
 		end
 	end
 
@@ -50,12 +48,12 @@ if ( SERVER ) then
 	end
 end
 
-if (CLIENT) then
+if CLIENT then
 	function ENT:Initialize()
 	end
 
 	function ENT:Draw()
-		self.Entity:DrawModel()
+		self:DrawModel()
 	end
 
 	function ENT:OnRemove()

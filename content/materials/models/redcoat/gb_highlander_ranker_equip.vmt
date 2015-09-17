@@ -1,0 +1,11 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\redcoat\gb_highlander_ranker_equip"
+	"$bumpmap" "models\redcoat\gb_highlander_ranker_equip_n"
+	"$surfaceprop" "Metal"
+	"$alphatest" 1
+	"$nocull" 1
+	"$phong" 1
+	"$phongexponent" 33
+	"$phongboost" 2
+}

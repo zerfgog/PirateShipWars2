@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "pirate/ship/gold"
+	"$normalmap" "pirate/ship/gold_nrm"
+	"$surfaceprop" "metal"
+	"$envmapcontrast" 1
+	"$envmapsaturation" 1
+}

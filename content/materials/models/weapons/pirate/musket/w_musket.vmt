@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	$baseTexture "models/weapons/pirate/musket/w_musket"
+	$bumpmap "models/weapons/pirate/musket/w_musket_normal"
+	$phong 1
+	$phongexponent 15
+	$phongboost 30
+	$phongfresnelranges "[0 0.5 1]"
+	$halflambert 1
+}

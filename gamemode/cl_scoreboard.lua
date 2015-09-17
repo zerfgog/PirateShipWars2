@@ -6,10 +6,8 @@ local PSWSBSpectator
 local function SortByUserID(a, b)
 	local afrags = a:Frags()
 	local bfrags = b:Frags()
-	if afrags == bfrags then
-		return a:Deaths() < b:Deaths()
-	end
-	return bfrags < afrags
+
+	return afrags == bfrags and (a:Deaths() < b:Deaths()) or (bfrags < afrags)
 end
 
 local function profileopen(self, mc)
@@ -82,6 +80,7 @@ function GM:ScoreboardRefresh(PSWSB)
 	else
 		allplayers = team.GetPlayers(TEAM_SPECTATE)
 	end
+
 	table.sort(allplayers, SortByUserID)
 	for i, pl in ipairs(allplayers) do
 		local Panel = vgui.Create("Panel", list)
@@ -180,7 +179,6 @@ end
 
 local Scroll = 0
 function GM:CreateScoreboard()
-
 	PSWSB = vgui.Create("DImage")
 	PSWSB:SetPos(ScrW()* 0.20, ScrH()* 0.06)
 	PSWSB:SetImage('PirateShipWars/old_parchment')

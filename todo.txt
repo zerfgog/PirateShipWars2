@@ -1,0 +1,18 @@
+lua_run for k,v in pairs(player.GetAll()) do v:SetBodygroup( 3, 2 ) end
+-- Hat bodygroup on the redcoats
+
+improve chat filter
+
+add headshots to projectiles
+
+work out projectiles
+
+exp system that gives rank?
+
+hand cannon swep
+
+fix grenades (ttt base?)
+
+more changes ported over from disseminate's
+
+fix weapon models (c_hands)

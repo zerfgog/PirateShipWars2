@@ -39,22 +39,22 @@
 //---------------------------------
 //--Ships Cannons
 //---------------------------------
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannonbase.mdl") = psw_shipscannonbase :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannonbase.mdl") = psw_shipscannonbase :
         "This entity spawns everything related to a single cannon"
 [
 ]
 
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannonbasesmall.mdl") = psw_shipscannonbasesmall :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannonbasesmall.mdl") = psw_shipscannonbasesmall :
         "This entity spawns everything related to a single cannon"
 [
 ]
 
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannon.mdl") = psw_shipscannon :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannon.mdl") = psw_shipscannon :
         "This entity spawns everything related to a single cannon"
 [
 ]
 
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannonsmall.mdl") = psw_shipscannonsmall :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannonsmall.mdl") = psw_shipscannonsmall :
         "This entity spawns everything related to a single cannon"
 [
 ]
@@ -62,22 +62,22 @@
 //---------------------------------
 //--Forts Cannons
 //---------------------------------
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannonbase.mdl") = psw_fortscannonbase :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannonbase.mdl") = psw_fortscannonbase :
         "This entity spawns everything related to a single cannon"
 [
 ]
 
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannonbasesmall.mdl") = psw_fortscannonbasesmall :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannonbasesmall.mdl") = psw_fortscannonbasesmall :
         "This entity spawns everything related to a single cannon"
 [
 ]
 
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannon.mdl") = psw_fortscannon :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannon.mdl") = psw_fortscannon :
         "This entity spawns everything related to a single cannon"
 [
 ]
 
-@PointClass base(Targetname, Angles, Parentname) studio("models/Frigate01/cannon/cannonsmall.mdl") = psw_fortscannonsmall :
+@PointClass base(Targetname, Angles, Parentname) studio("models/frigate01/cannon/cannonsmall.mdl") = psw_fortscannonsmall :
         "This entity spawns everything related to a single cannon"
 [
 ]

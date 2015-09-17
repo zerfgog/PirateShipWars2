@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$baseTexture" "pirate/ship/wood/shipwood_01"
+	"$surfaceprop" "wood"
+}

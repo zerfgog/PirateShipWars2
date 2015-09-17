@@ -1,13 +1,12 @@
 AddCSLuaFile()
 
-ENT.Type 			= "anim"
-ENT.Base 			= "base_anim"
-ENT.PrintName		= "Pistol Ammo"
+ENT.Type		= "anim"
+ENT.Base		= "base_anim"
+ENT.PrintName	= "Pistol Ammo"
 
-ENT.Spawnable			= true
-ENT.AdminSpawnable		= true
+ENT.Spawnable	= true
 
-if ( SERVER ) then
+if SERVER then
 
 	ENT.CleanupPriority = 2
 
@@ -21,17 +20,15 @@ if ( SERVER ) then
 		self:SetUseType(SIMPLE_USE)
 
 		local phys = self:GetPhysicsObject()
-		if phys:IsValid() then
+		if IsValid(phys) then
 			phys:SetMaterial("material")
 			phys:EnableMotion(true)
 			phys:Wake()
 		end
-
-		--self:ItemCreated()
 	end
 
 	function ENT:SetAmmoType(ammotype)
-		self:SetModel(GAMEMODE.AmmoModels[string.lower(ammotype)] or "models/Items/BoxMRounds.mdl")
+		self:SetModel(GAMEMODE.AmmoModels[string.lower(ammotype)] or "models/items/boxmrounds.mdl")
 		self.m_AmmoType = ammotype
 	end
 
@@ -49,26 +46,26 @@ if ( SERVER ) then
 
 	function ENT:Use(activator, caller)
 		if activator:IsPlayer() and activator:Alive() then
-				local hasweapon = false
-					for _, wep in pairs(activator:GetWeapons()) do
-						if wep.Primary and wep.Primary.Ammo and string.lower(wep.Primary.Ammo) == string.lower(self:GetAmmoType())
-						or wep.Secondary and wep.Secondary.Ammo and string.lower(wep.Secondary.Ammo) == string.lower(self:GetAmmoType()) then
-							hasweapon = true
-							break
-						end
-					end
+			local hasweapon = false
+			for _, wep in pairs(activator:GetWeapons()) do
+				if wep.Primary and wep.Primary.Ammo and string.lower(wep.Primary.Ammo) == string.lower(self:GetAmmoType())
+				or wep.Secondary and wep.Secondary.Ammo and string.lower(wep.Secondary.Ammo) == string.lower(self:GetAmmoType()) then
+					hasweapon = true
+					break
+				end
+			end
 
-					if not hasweapon then
-						activator:SplitMessage("You don't have anything that uses this type of ammo.")
-						return
-					end
+			if not hasweapon then
+				activator:PrintMessage(HUD_PRINTTALK, "You don't have anything that uses this type of ammo.")
+				return
+			end
 
-				activator:GiveAmmo(self:GetAmmo(), self:GetAmmoType())
+			activator:GiveAmmo(self:GetAmmo(), self:GetAmmoType())
 
-				activator.AmmoPickups = (activator.AmmoPickups or 0) + 1
+			activator.AmmoPickups = (activator.AmmoPickups or 0) + 1
 		end
 	end
-	
+
 	function ENT:KeyValue(key, value)
 		key = string.lower(key)
 		if key == "ammotype" then
@@ -84,11 +81,10 @@ if ( SERVER ) then
 			self:RemoveNextFrame()
 		end
 	end
-	
 end
 
 
-if (CLIENT) then
+if CLIENT then
 	function ENT:Initialize()
 	end
 

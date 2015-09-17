@@ -6,7 +6,6 @@ ENT.PrintName		= "Pirate Ship Helm"
 ENT.Author			= "Thomas Hansen"
 
 ENT.Spawnable			= false
-ENT.AdminSpawnable		= true
 	
 function ENT:Think()
 	local owner = self:GetOwner()
@@ -45,19 +44,19 @@ function ENT:Think()
 	end
 end
 
-if ( SERVER ) then
-
+if SERVER then
 	function ENT:Initialize()
 		self:SetModel( "models/frigate01/helm/helm.mdl" )
 		self:SetSolid( SOLID_VPHYSICS )
 		self.nextUse=0
 	end
-	
+
 	function ENT:Use(ply,caller)
-		if self.nextUse>CurTime() then return end
-		self.nextUse = CurTime()+0.5
+		if self.nextUse > CurTime() then return end
+		self.nextUse = CurTime() + 0.5
 		if ply:IsPlayer() then
-			ply:SetArmor( 1 )
+			if self:GetOwner():IsPlayer() and ply ~= self:GetOwner() then ply:PrintMessage(HUD_PRINTTALK, "Someone be using that!") return end
+			ply:SetArmor(1)
 			ply:SetArmor(ply:Armor() + 100)
 
 			if !ply:KeyPressed(IN_USE) then return end
@@ -67,17 +66,17 @@ if ( SERVER ) then
 			self.Entity:SetOwner(ply)
 			self.weps = {}
 			for k,v in pairs(ply:GetWeapons()) do
-				table.insert(self.weps, v:GetClass());
+				table.insert(self.weps, v:GetClass())
 			end
-			ply:StripWeapons();
-			self.owner = ply;
+			ply:StripWeapons()
+			self.owner = ply
 		end
 	end
-	
+
 	function ENT:OnRemove()
 		self:Deactivate()
 	end
-	
+
 	function ENT:Deactivate()
 		local owner = self:GetOwner()
 		if owner:IsPlayer() then
@@ -86,13 +85,14 @@ if ( SERVER ) then
 			self:SetOwner( self:GetParent() )
 			owner:SetParent()
 			owner:SetMoveType(2)
+			owner:SetWalkSpeed(250)
 			owner:SetGravity(1)
 			owner:DrawViewModel(true)
 			owner = false
 			for k,v in pairs(self.weps) do
 				self.owner:Give(tostring(v));
 			end
-			self.owner = NULL;
+			self.owner = nil
 			
 			if self.Entity:GetName() == "ship1helm" then
 				ents.FindByName( "ship1_thruster_forward" )[1]:Fire("Deactivate")
@@ -108,11 +108,9 @@ if ( SERVER ) then
 			end
 		end
 	end
-	
-	function ENT:Think()
 
-			
-	local owner = self:GetOwner()
+	function ENT:Think()
+		local owner = self:GetOwner()
 		if owner:IsPlayer() && owner:Alive() then
 			local ownerpos = owner:GetPos()
 			local Helmpos = self:GetPos()
@@ -121,12 +119,12 @@ if ( SERVER ) then
 				self:Deactivate()
 				return
 			end
-				
-			if (self.Entity:GetOwner():KeyPressed(IN_USE)) then
+
+			if self.Entity:GetOwner():KeyPressed(IN_USE) then
 				self.nextUse = CurTime()+0.5
 				return
 			end
-			
+
 			if self.Entity:GetOwner():KeyDown(IN_USE) then
 				if self.nextUse<=CurTime() then
 					self.nextUse = CurTime()+0.5
@@ -134,9 +132,9 @@ if ( SERVER ) then
 					return 
 				end
 			end
-			
+
 			if self.Entity:GetOwner():KeyDown(IN_ATTACK2) then
-				if(ScopeLevel == 0) then
+				if ScopeLevel == 0 then
 					if(SERVER) then
 						self.Owner:SetFOV( 45, 0 )
 					end	
@@ -154,7 +152,7 @@ if ( SERVER ) then
 					end
 				end
 			end
-			
+
 			if self.Entity:GetName() == "ship1helm" then
 				if self.Entity:GetOwner():KeyDown( IN_FORWARD ) then
 					ents.FindByName( "ship1_thruster_forward" )[1]:Fire("Activate")
@@ -162,7 +160,7 @@ if ( SERVER ) then
 					ents.FindByName( "ship1_thruster_forward" )[1]:Fire("Deactivate")
 				end
 
-				if (self.Entity:GetOwner():KeyDown( IN_BACK )) then
+				if self.Entity:GetOwner():KeyDown( IN_BACK ) then
 					ents.FindByName( "ship1_thruster_reverse" )[1]:Fire("Activate")
 				else
 					ents.FindByName( "ship1_thruster_reverse" )[1]:Fire("Deactivate")
@@ -180,26 +178,26 @@ if ( SERVER ) then
 					ents.FindByName( "ship1_thruster_right" )[1]:Fire("Deactivate")
 				end
 			end
-				
+
 			if self.Entity:GetName() == "ship2helm" then
 				if self.Entity:GetOwner():KeyDown( IN_FORWARD ) then
 					ents.FindByName( "ship2_thruster_forward" )[1]:Fire("Activate")
 				else
 					ents.FindByName( "ship2_thruster_forward" )[1]:Fire("Deactivate")
 				end
-				
-				if (self.Entity:GetOwner():KeyDown( IN_BACK )) then
+
+				if self.Entity:GetOwner():KeyDown( IN_BACK ) then
 					ents.FindByName( "ship2_thruster_reverse" )[1]:Fire("Activate")
 				else
 					ents.FindByName( "ship2_thruster_reverse" )[1]:Fire("Deactivate")
 				end
-				
+
 				if self.Entity:GetOwner():KeyDown( IN_MOVELEFT ) then
 					ents.FindByName( "ship2_thruster_left" )[1]:Fire("Activate")
 				else
 					ents.FindByName( "ship2_thruster_left" )[1]:Fire("Deactivate")
 				end
-				
+
 				if self.Entity:GetOwner():KeyDown( IN_MOVERIGHT ) then
 					ents.FindByName( "ship2_thruster_right" )[1]:Fire("Activate")
 				else
@@ -209,25 +207,25 @@ if ( SERVER ) then
 		else
 			self:Deactivate()
 		end
-		
+--[[
 		if shipdata[1].sinking == true then --red team ship stop
 			ents.FindByName( "ship1_thruster_forward" )[1]:Fire("Scale")
 			ents.FindByName( "ship1_thruster_reverse" )[1]:Fire("Scale")
 			ents.FindByName( "ship1_thruster_left" )[1]:Fire("Scale")
 			ents.FindByName( "ship1_thruster_right" )[1]:Fire("Scale")
 		end
-	
+
 		if shipdata[2].sinking == true then
 			ents.FindByName( "ship2_thruster_forward" )[1]:Fire("Scale")
 			ents.FindByName( "ship2_thruster_reverse" )[1]:Fire("Scale")
 			ents.FindByName( "ship2_thruster_left" )[1]:Fire("Scale")
 			ents.FindByName( "ship2_thruster_right" )[1]:Fire("Scale")
 		end
-		
+]]
 	end	
 end
 
-if (CLIENT) then
+if CLIENT then
 	ENT.Turning = 0
 
 	function ENT:Initialize()
@@ -253,7 +251,7 @@ if (CLIENT) then
 		end]]--
 		self.Entity:DrawModel()
 	end
-	
+
 	--[[function MyCalcView(ply, pos, angles, fov)
 		if helmview == 1 then
 			local view = {}

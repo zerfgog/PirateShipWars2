@@ -1,9 +1,8 @@
 AddCSLuaFile()
 
-ENT.Type 			= "anim"
+ENT.Type = "anim"
 
-if (CLIENT) then
+if CLIENT then
 	function ENT:Draw()
-
 	end
 end

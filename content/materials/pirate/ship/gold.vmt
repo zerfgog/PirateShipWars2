@@ -1,0 +1,8 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "pirate/ship/gold"
+	"$normalmap" "pirate/ship/gold_nrm"
+	"$surfaceprop" "Metal"
+	"$envmapcontrast" 1
+	"$envmapsaturation" 1
+}
