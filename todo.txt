@@ -1,8 +1,6 @@
 lua_run for k,v in pairs(player.GetAll()) do v:SetBodygroup( 3, 2 ) end
 -- Hat bodygroup on the redcoats
 
-improve chat filter
-
 add headshots to projectiles
 
 work out projectiles
@@ -16,3 +14,72 @@ fix grenades (ttt base?)
 more changes ported over from disseminate's
 
 fix weapon models (c_hands)
+
+improve/implement chat filter
+current chat filter:
+["hello"] = "Ahoy",
+["yes"] = "yarr", ["yeah"] = "aye", ["of course"] = "aye aye", ["yay"] = "yarr",
+[" no "] = " nay ",
+
+["fag"] = "bilge rat", ["dyke"] = "bilge rat", ["nigger"] = "bilge rat", ["nigga"] = "bilge rat", ["niglet"] = "bilge rat", ["bastard"] = "bilge rat", ["douche"] = "bilge rat", ["skank"] = "bilge rat", ["slut"] = "bilge rat", ["whore"] = "bilge rat",
+
+["wow"] = "shiver me timbers", ["wtf"] = "blimey", ["woah"] = "shiver me timbers",
+["treasure"] = "booty", ["money"] = "booty", ["friend"] = "matey",
+["lookout"] = "crow's nest", ["knife"] = "cutlass",
+
+["good luck"] = "fair winds", ["whip"] = "flog", ["beer"] = "grog", ["alcohol"] = "grog", ["food"] = "grub",
+["hideout"] = "haven", ["home"] = "haven",
+["cheat"] = "hornswaggle", ["hack"] = "hornswaggle", ["hax"] = "hornswaggles",
+["girl"] = "lass", ["boy"] = "lad", ["abandon"] = "maroon",
+["rebel"] = "mutiny", ["steal"] = "plunder",
+["left"] = "port", ["right"] = "starboard", ["back"] = "aft", ["front"] = "prow",
+["song"] = "shanty", ["drunk"] = "three shets in the wind", ["clean"] = "titivate",
+["you"] = "ye",
+["fuck"] = "blast",
+["fucking"] = "blasted",
+["shit"] = "blimey",
+["damn"] = "drat",
+
+["fag"] = "doo-doo head",
+["dyke"] = "puppet-ears",
+["bastard"] = "fart-face",
+["douche"] = "log-brain",
+["skank"] = "wench",
+["slut"] = "wench",
+["whore"] = "wench",
+["bitch"] = "wench",
+
+["cunt"] = "lassy parts",
+["clit"] = "lassy parts",
+["dick"] = "sabre",
+["cock"] = "sabre",
+["cum"] = "***",
+["jizz"] = "****",
+["dildo"] = "toy",
+["tit"] = "***",
+["wank"] = "****",
+["fap"] = "***",
+["ass"] = "bottom",
+["pussy"] = "kitty",
+["faggot"] = "******",
+["gtfo"] = "walk the plank",
+["chat filter"]  = "pirateizer",
+[" is "] = " be ",
+[" are "] = " be ",
+[" am "] = " be ",
+["leader"] = "captain",
+["ship"] = "worthy vessel", ["boat"] = "worthy vessel",
+["think"] = "reckon",
+["were"] = "was",
+["wasnt"] = "twasn't", ["wasn't"] = "twasn't",
+["barrel"] = "keg",
+["ah"] = "Arr!",
+["pls"] = "i request ye",
+["idk"] = "i'd be blasted if i knew",
+["modified"] = "fiddled with",
+["water"] = "sea",
+["kick"] = "boot",
+["teamkilling"] = "mutiny", ["team killing"] = "mutiny",
+["my"] = "me",
+["fall"] = "plunge",
+["computer"] = "clackity-box",
